@@ -1,2 +1,1 @@
-# YouLearn-Frontent
-Frontent for YouLearn
+Front-end kod za Web aplikacije
