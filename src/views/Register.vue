@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col"></div>
       <div class="col">
-        <form @submit.prevent="signup" action="Posts.vue">
+        <form @submit.prevent="signup" action="Home.vue">
           <div v-if="errorMessage" class="alert alert-danger">
             <strong>Error!</strong>
             {{ errorMessage }}
@@ -70,10 +70,16 @@ export default {
   #emailField{
     font-family: Cuprum;
   }
+  #usernameField{
+    font-family: Cuprum;
+  }
   #passwordField{
     font-family: Cuprum;
   }
   #mail{
+    font-family: Cuprum;
+  }
+  #user{
     font-family: Cuprum;
   }
   #pw{

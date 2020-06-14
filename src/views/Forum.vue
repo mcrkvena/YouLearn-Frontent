@@ -8,7 +8,7 @@
         </span>
         <br>
           <div id="singlepost">
-            <div :key="card.id" v-for="card in cards">
+            <div @click="expandPost(card)" :key="card.id" v-for="card in cards">
               <ForumPost :info="card"/>
             </div>
         </div>
@@ -19,7 +19,7 @@
       <br>
       <br>
       <span v-if="store.authenticated" id="loggedintext">
-        Logged in as {{ store.userEmail }}
+        Logged in as {{ mailFormat(store.userEmail) }}
         <br/>
         <br/>
       </span>
@@ -61,10 +61,9 @@
 import _ from 'lodash'
 import store from "@/store.js";
 import ForumPost from "@/components/ForumPost.vue";
-import { Posts } from "@/services"
+import { Posts } from "@/services";
 
 export default {
-  props: ["term"],
   data() {
     return {
       store,
@@ -84,15 +83,20 @@ export default {
     },
     fetchPosts(term) {
       term = term || store.searchTerm
-
       Posts.getAll(term)
         .then(response => {
           let data = response.data;
           this.cards = data.map(doc => {
-            return {id: doc.id, url: doc.content, email: doc.postedBy, title: doc.title, posted_at: Number(doc.postedAt)}
+            return {id: doc._id, url: doc.content, email: doc.postedBy, title: doc.title, posted_at: Number(doc.postedAt)}
           })
         })
     },
+    expandPost(card) {
+            this.$router.push({ path: `forum/${card.id}` });
+    },
+    mailFormat(str){
+      return str.slice(0, str.indexOf("@"));
+    }
   },
   components: {
     ForumPost

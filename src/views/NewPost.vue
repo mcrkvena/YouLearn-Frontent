@@ -10,7 +10,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text">Content</span>
       </div>
-      <input v-model="content" type="text" class="form-control">
+      <input v-model="content" type="text" id="content" class="form-control">
     </div>
     <button type="submit" class="btn">Create Post</button>
   </form>
@@ -33,11 +33,10 @@ export default {
   methods: {
     async CreatePost() {
       let post = {
-        id: Date.now(),
         postedBy: this.store.userEmail,
         postedAt: Date.now(),
-        url: this.content,
-        title: this.title
+        title: this.title,
+        content: this.content
       }
       let newpost = await Posts.add(post)
       console.log("Saved post: ", newpost.data)
@@ -60,6 +59,11 @@ img:hover {
 .btn-post {
   width: 200px;
 }
+
+#content{
+  height: 200px;
+}
+
 .btn{
   font-family: Cuprum;
   border: 2px;

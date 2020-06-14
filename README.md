@@ -1,1 +1,1 @@
-Frontend kod za YouLearn
+Front-end kod za Web aplikacije

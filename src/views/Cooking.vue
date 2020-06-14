@@ -2,24 +2,24 @@
   <div class="container-fluid">
     <div v-if="store.authenticated" class="col-lg-8">
         <br>
-        MY VIDEOS
+        CATEROGY: COOKING
         <br>
-          <div class="row1">
+        <div class="row1">
             <div @click="expandVideo(card)" :key="card.id" v-for="card in firstrow">
               <Video :info="card"/>
             </div>
-        </div>
+          </div>
           <div class="row2">
             <div @click="expandVideo(card)" :key="card.id" v-for="card in secondrow">
               <Video :info="card"/>
             </div>
-        </div>
+          </div>
           <div class="row3">
             <div @click="expandVideo(card)" :key="card.id" v-for="card in thirdrow">
               <Video :info="card"/>
             </div>
+          </div>
         </div>
-    </div>
     <div class="col-lg-4">
       <br>
       <br>
@@ -95,7 +95,7 @@ export default {
   created() {
     this.fetchVideos()
   },
-  name: "mychannel",
+  name: "cooking",
   methods: {
     logout() {
       firebase.auth().signOut();
@@ -106,7 +106,7 @@ export default {
       Videos.getAll(term)
         .then(response => {
           let data = response.data;
-          this.cards = data.filter(doc => doc.postedBy===store.userEmail)
+          this.cards = data.filter(doc => doc.category=='Cooking')
           .map(doc => {
             return {id: doc._id, url: doc.url, email: doc.postedBy, title: doc.title, posted_at: Number(doc.postedAt)}
           })

@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col">
             <nav class="navbar navbar-expand-lg navbar-light">
-              <router-link class="navbar-brand" :to="{ name: 'videos' }">
+              <router-link class="navbar-brand" :to="{ name: 'videos'}" onclick="location.reload();">
                 <img src="/images/logo.png" width="220" height="50" />
               </router-link>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
@@ -13,7 +13,7 @@
               </button>
 
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline my-2 my-lg-0 mr-auto ml-5">
+                <form class="form-inline my-2 my-lg-0 ml-5">
                   <input v-model="searchTerm" class="form-control mr-sm-2" type="search" id="searchbar" placeholder="Search..." aria-label="Search" />
                 </form>
               </div>
@@ -47,13 +47,13 @@ export default {
         console.log("Logged in as " + user.email)
         this.authenticated = true
         this.userEmail = user.email
-        if (this.$route.name !== 'videos')
+        if ((this.$route.name === 'login')||(this.$route.name === 'register')||(this.$route.name === 'mychannel'))
           this.$router.push({name: 'videos'}).catch(err => console.log(err))
       }
       else {
         console.log("Not logged in")
         this.authenticated = false
-        if (this.$route.name !== 'videos')
+        if ((this.$route.name === 'newvideo')||(this.$route.name === 'newpost')||(this.$route.name === 'mychannel'))
           this.$router.push({name: 'videos'}).catch(err => console.log(err))
       }
     });

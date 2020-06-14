@@ -21,18 +21,18 @@ let Posts = {
         let response = await Service.get(`/forum/${id}`);
         let doc = response.data;
         return {
-        id: doc._id,
-        url: doc.content,
-        email: doc.postedBy,
-        title: doc.title,
-        posted_at: Number(doc.postedAt),
-        comments: (doc.comments || []).map((c) => {
-        c.id = c._id;
-        delete c._id;
-        return c;
-        }),
+            id: doc._id,
+            url: doc.content,
+            email: doc.postedBy,
+            title: doc.title,
+            posted_at: Number(doc.postedAt),
+            comments: (doc.comments || []).map((c) => {
+                c.id = c._id;
+                delete c._id;
+                return c;
+            }),
         };
-        },
+    },
     async getAll(searchTerm) {
         let options = {}
 
@@ -49,7 +49,7 @@ let Posts = {
 let Videos = {
     Comments: {
         async add(videoId, comment) {
-        await Service.post(`/videos/${videoId}/comments/`, comment);
+            await Service.post(`/videos/${videoId}/comments/`, comment);
         },
         async delete(videoId, commentId) {
             await Service.delete(`/videos/${videoId}/comments/${commentId}`);
@@ -58,20 +58,20 @@ let Videos = {
     add(post) {
         return Service.post('/videos', post);
     },
-    async getOne(videoid) {
-        let response = await Service.get(`/videos/${videoid}`);
+    async getOne(id) {
+        let response = await Service.get(`/videos/${id}`);
         let doc = response.data;
         return {
-        videoid: doc._videoid,
-        url: doc.url,
-        email: doc.postedBy,
-        title: doc.title,
-        posted_at: Number(doc.postedAt),
-        comments: (doc.comments || []).map((c) => {
-        c.id = c._id;
-        delete c._id;
-        return c;
-        }),
+            id: doc._id,
+            url: doc.url,
+            email: doc.postedBy,
+            title: doc.title,
+            posted_at: Number(doc.postedAt),
+            comments: (doc.comments || []).map((c) => {
+                c.id = c._id;
+                delete c._id;
+                return c;
+            }),
         };
         },
     async getAll(searchTerm) {

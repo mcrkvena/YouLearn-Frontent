@@ -1,34 +1,33 @@
 <template>
-
       <div class="card text-center" id="allvideos">
         <div class="card-header text-left">
-          {{ timeAgo }} <strong style="float: right">{{ mailFormat(info.email) }}</strong>
+            <strong>{{ info.title }} </strong>
         </div>
         <div class="card-body" >
-            <iframe width="500" height="315"
+            <iframe width="1200" height="800"
                 :src="info.url" frameborder="0" allowfullscreen>
             </iframe>
         </div>
         <div class="card-footer text-left">
-          <div style="float: left">
-              <strong>{{ info.title }} </strong>
+          <div>
+            {{ mailFormat(info.email) }} <strong style="float: right">{{ timeAgo }}</strong>
           </div>
           <div v-if="showcomments">
             <div class="comments list-group">
               <a :key="c.posted_at" v-for="c in info.comments" href="#" class="animate list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                  <small>{{ formatTime(c.posted_at) }} by {{ mailFormat(c.email) }} </small>
+                  <small>{{ mailFormat(c.email) }}</small>
                   <a @click="removeComment(c.id)" href="#">Delete</a>
                 </div>
-                <small>{{ c.comment }}</small>
+                <strong>{{ c.comment }}</strong>
               </a>
             </div>
 
             <form @submit.prevent="postComment" class="form-inline mb-5">
               <div class="form-group">
-                <input v-model="newComment" type="text" class="form-control" placeholder="Comment">
+                <input v-model="newComment" type="text" class="form-control" id="comment" placeholder="Add a comment">
               </div>
-              <button type="submit" class="btn btn-primary ml-2">Post</button>
+              <button type="submit" class="btn">Post</button>
             </form>
           </div>
 
@@ -51,7 +50,7 @@ export default {
     }
   },
   methods: {
-    formatTime(t) {
+    commentTimeAgo(t) {
       return moment(t.posted_at).fromNow()
     },
     mailFormat(str){
@@ -59,7 +58,7 @@ export default {
     },
     async postComment() {
       if (this.newComment) {
-        let videoId = this.info.videoid;
+        let videoId = this.info.id;
         let comment = {
           email: this.global.userEmail,
           comment: this.newComment,
@@ -75,11 +74,11 @@ export default {
         }
       },
     async refresh() {
-      let video = await Videos.getOne(this.info.videoid);
+      let video = await Videos.getOne(this.info.id);
       this.info.comments = video.comments;
     },
     async removeComment(commentId) {
-      let videoId = this.info.videoid;
+      let videoId = this.info.id;
       await Videos.Comments.delete(videoId, commentId);
       this.refresh();
     }
@@ -93,23 +92,37 @@ export default {
 </script>
 
 <style>
-
-  #allvideos{
-    width: 500px;
+  .card{
     margin-left: -300px;
-    font-size: 20px;
+    font-size: 40px;
+    margin-top: -100px;
   }
   .card-body{
       margin-top: -20px;
       margin-left: -21px;
       margin-bottom: -30px;
-      width:max-content
+      width:max-content;
   }
-  .card {
-    margin-bottom: 10px
+  .card-footer {
+      margin-top: 810px;
   }
   .comments {
-    margin: 20px 0
+    margin: 20px;
+    margin-top:50px;
+    font-size: 20px;
+  }
+  #comment{
+    width: 500px;
+  }
+  .btn{
+    font-family: Cuprum;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 200px;
+    margin-left: 20px;
+    font-size: 20px;
+    color: black;
   }
 
   @-webkit-keyframes fade-in-fwd{0%{-webkit-transform:translateZ(-80px);transform:translateZ(-80px);opacity:0}100%{-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes fade-in-fwd{0%{-webkit-transform:translateZ(-80px);transform:translateZ(-80px);opacity:0}100%{-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}

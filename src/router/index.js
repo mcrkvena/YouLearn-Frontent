@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Videos from '../components/Video.vue'
+import Forum from '../views/Forum.vue'
 
 Vue.use(VueRouter)
 
@@ -14,13 +15,7 @@ const routes = [
         path: '',
         name: 'videos',
         component: Videos
-      },
- //     {
- //       path: 'post/:id',
- //       props: true,
- //       name: 'post-detail',
- //       component: () => import(/* webpackChunkName: "post-detail" */ '../views/ForumPost.vue')
- //     }
+      }
     ]
   },
   {
@@ -36,17 +31,80 @@ const routes = [
   {
     path: '/mychannel',
     name: 'mychannel',
-    component: () => import(/* webpackChunkName: "register" */ '../views/MyChannel.vue')
+    component: () => import(/* webpackChunkName: "mychannel" */ '../views/MyChannel.vue')
   },
   {
     path: '/videocategories',
     name: 'videocategories',
-    component: () => import(/* webpackChunkName: "register" */ '../views/VideoCategories.vue')
+    component: () => import(/* webpackChunkName: "videocategories" */ '../views/VideoCategories.vue'),
+  },
+  {
+    path: '/videocategories/school',
+    name: 'school',
+    component: () => import(/* webpackChunkName: "school" */ '../views/School.vue'),
+  },
+  {
+    path: '/videocategories/vehicles',
+    name: 'vehicles',
+    component: () => import(/* webpackChunkName: "vehicles" */ '../views/Vehicles.vue'),
+  },
+  {
+    path: '/videocategories/music',
+    name: 'music',
+    component: () => import(/* webpackChunkName: "music" */ '../views/Music.vue'),
+  },
+  {
+    path: '/videocategories/games',
+    name: 'games',
+    component: () => import(/* webpackChunkName: "games" */ '../views/Games.vue'),
+  },
+  {
+    path: '/videocategories/tech',
+    name: 'tech',
+    component: () => import(/* webpackChunkName: "tech" */ '../views/Tech.vue'),
+  },
+  {
+    path: '/videocategories/gardening',
+    name: 'gardening',
+    component: () => import(/* webpackChunkName: "gardening" */ '../views/Gardening.vue'),
+  },
+  {
+    path: '/videocategories/sports',
+    name: 'sports',
+    component: () => import(/* webpackChunkName: "sports" */ '../views/Sports.vue'),
+  },
+  {
+    path: '/videocategories/cooking',
+    name: 'cooking',
+    component: () => import(/* webpackChunkName: "cooking" */ '../views/Cooking.vue'),
+  },
+  {
+    path: '/videocategories/miscellaneous',
+    name: 'miscellaneous',
+    component: () => import(/* webpackChunkName: "miscellaneous" */ '../views/Miscellaneous.vue'),
   },
   {
     path: '/forum',
     name: 'posts',
-    component: () => import(/* webpackChunkName: "register" */ '../views/Forum.vue')
+    component: Forum,
+  },
+  {
+    path: '/forum/:id',
+    props: true,
+    name: 'postdetail',
+    component: () => import(/* webpackChunkName: "postdetail" */ '../views/PostDetail.vue')
+  },
+  {
+    path: '/videos/:id',
+    props: true,
+    name: 'videodetail',
+    component: () => import(/* webpackChunkName: "videodetail" */ '../views/VideoDetail.vue')
+  },
+  {
+    path: '/videocategories/videos/:id',
+    props: true,
+    name: 'videodetail',
+    component: () => import(/* webpackChunkName: "videodetail" */ '../views/VideoDetail.vue')
   },
   {
     path: '/newpost',

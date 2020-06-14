@@ -6,31 +6,31 @@
         <br>
           <div id="catlist">
             <div class="allcats1">
-              School
+              <router-link class="text" to="/videocategories/school" >School</router-link >
             </div>
             <div class="allcats2">
-              Vehicles
+              <router-link class="text" to="/videocategories/vehicles" >Vehicles</router-link >
             </div>
             <div class="allcats1">
-              Music
+              <router-link class="text" to="/videocategories/music" >Music</router-link >
             </div>
             <div class="allcats2">
-              Games
+              <router-link class="text" to="/videocategories/games" >Games</router-link >
             </div>
             <div class="allcats1">
-              Tech
+              <router-link class="text" to="/videocategories/tech" >Tech</router-link >
             </div>
             <div class="allcats2">
-              Gardening
+              <router-link class="text" to="/videocategories/gardening" >Gardening</router-link >
             </div>
             <div class="allcats1">
-              Sports
+              <router-link class="text" to="/videocategories/sports" >Sports</router-link >
             </div>
             <div class="allcats2">
-              Cooking
+              <router-link class="text" to="/videocategories/cooking" >Cooking</router-link >
             </div>
             <div class="allcats1">
-              Miscellaneous
+              <router-link class="text" to="/videocategories/miscellaneous" >Miscellaneous</router-link >
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
       <br>
       <br>
       <span v-if="authenticated" id="loggedintext">
-        Logged in as {{ userEmail }}
+        Logged in as {{ mailFormat(userEmail) }}
         <br/>
         <br/>
       </span>
@@ -90,6 +90,9 @@ export default {
   methods: {
     logout() {
       firebase.auth().signOut();
+    },
+    mailFormat(str){
+      return str.slice(0, str.indexOf("@"));
     }
   }
 };

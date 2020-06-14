@@ -8,7 +8,7 @@
     </div>
     <div class="input-group">
       <div class="input-group-prepend">
-        <span class="input-group-text">URL</span>
+        <span class="input-group-text">YouTube URL</span>
       </div>
       <input v-model="url" type="url" class="form-control">
     </div>
@@ -34,10 +34,13 @@
       <input v-model="category" type="radio" class="form-control" id="gardening" name="gardening" value="Gardening">
       <label class="labels" for="gardening"> Gardening </label>
       <br>
+      <input v-model="category" type="radio" class="form-control" id="sports" name="sports" value="Sports">
+      <label class="labels" for="sports"> Sports </label>
+      <br>
       <input v-model="category" type="radio" class="form-control" id="cooking" name="cooking" value="Cooking">
       <label class="labels" for="cooking"> Cooking </label>
       <br>
-      <input v-model="category" type="radio" class="form-control" id="misc" name="misc" value="misc">
+      <input v-model="category" type="radio" class="form-control" id="misc" name="misc" value="Misc">
       <label class="labels" for="misc"> Miscellaneous </label>
       <br>
 
@@ -57,23 +60,25 @@ export default {
       store,
       title: '',
       url: '',
-      category: ""
+      category: ''
     }
   },
   name: "newvideo",
   methods: {
     async CreateVideo() {
+      var string = this.url
+      var newstring = string.replace('watch?v=', 'embed/')
       let videodata = {
-        id: Date.now(),
         postedBy: this.store.userEmail,
         postedAt: Date.now(),
-        url: this.url,
         title: this.title,
+        url: newstring,
         category: this.category
       }
-      let newpost = await Videos.add(videodata)
-      console.log("Saved video: ", newpost.data)
-      this.$router.push({name: "/"})
+      console.log(this.category)
+      let newvid = await Videos.add(videodata)
+      console.log("Saved video: ", newvid.data)
+      this.$router.push({name: "videos"})
     }
   }
 };

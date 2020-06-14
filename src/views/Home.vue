@@ -4,18 +4,18 @@
         <br>
         RECENT VIDEOS
         <br>
-          <div id="videocol1">
-            <div :key="card.id" v-for="card in cards">
+          <div class="row1">
+            <div @click="expandVideo(card)" :key="card.id" v-for="card in firstrow">
               <Video :info="card"/>
             </div>
         </div>
-          <div id="videocol2">
-            <div :key="card.id" v-for="card in cards">
+          <div class="row2">
+            <div @click="expandVideo(card)" :key="card.id" v-for="card in secondrow">
               <Video :info="card"/>
             </div>
         </div>
-          <div id="videocol3">
-            <div :key="card.id" v-for="card in cards">
+          <div class="row3">
+            <div @click="expandVideo(card)" :key="card.id" v-for="card in thirdrow">
               <Video :info="card"/>
             </div>
         </div>
@@ -26,7 +26,7 @@
       <br>
       <br>
       <span v-if="store.authenticated" id="loggedintext">
-        Logged in as {{ store.userEmail }}
+        Logged in as {{ mailFormat(store.userEmail) }}
         <br/>
         <br/>
       </span>
@@ -84,10 +84,27 @@ export default {
   created() {
     this.fetchVideos()
   },
-  name: "home",
+  mounted() {
+    refresh()
+  },
+  name: "videos",
+  computed:{
+    firstrow(){
+        return this.cards.slice(0,3)
+    },
+    secondrow(){
+        return this.cards.slice(3,6)
+    },
+    thirdrow(){
+        return this.cards.slice(6,9)
+    },
+  },
   methods: {
     logout() {
       firebase.auth().signOut();
+    },
+    refresh() {
+      window.location.reload()
     },
     fetchVideos(term) {
       term = term || store.searchTerm
@@ -97,10 +114,16 @@ export default {
           let data = response.data;
           console.log("Backend data: ", data)
           this.cards = data.map(doc => {
-            return {id: doc.videoid, url: doc.url, email: doc.postedBy, title: doc.title, posted_at: Number(doc.postedAt)}
+            return {id: doc._id, url: doc.url, email: doc.postedBy, title: doc.title, posted_at: Number(doc.postedAt)}
           })
         })
     },
+    expandVideo(card) {
+            this.$router.push({ path: `videos/${card.id}` });
+    },
+    mailFormat(str){
+      return str.slice(0, str.indexOf("@"));
+    }
   },
   components: {
     Video
@@ -132,18 +155,25 @@ export default {
       font-family: Cuprum;
       font-size: 40px;
   }
-  #videocol1{
-    float: left;
+  .row1{
+    width: 1220px;
     margin-left: -150px;
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
   }
-  #videocol2{
-    float: right;
-    margin-right: 130px;
+  .row2{
+    width: 1220px;
+    margin-left: -150px;
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
   }
-  #videocol3{
-    margin-left: 870px;
+  .row3{
+    width: 1220px;
+    margin-left: -150px;
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
   }
 </style>
