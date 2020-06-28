@@ -94,9 +94,9 @@ export default {
     expandPost(card) {
             this.$router.push({ path: `forum/${card.id}` });
     },
-    mailFormat(str){
+    mailFormat(str) {
       return str.slice(0, str.indexOf("@"));
-    }
+    },
   },
   components: {
     ForumPost
@@ -105,12 +105,13 @@ export default {
 </script>
 
 <style>
-  #loggedintext{
+  #loggedintext {
     font-family: Cuprum;
     font-size: 20px;
     color: black;
   }
-  .btn{
+
+  .btn {
     font-family: Cuprum;
     border: 2px;
     border-color: black;
@@ -119,17 +120,21 @@ export default {
     font-size: 20px;
     color: black;
   }
-  #singlepost{
+
+  #singlepost {
     margin-top: 30px;
   }
-  #addpost{
+
+  #addpost {
     float:right;
     margin-right: -210px;
   }
-  .col-lg-4{
+
+  .col-lg-4 {
       float: left;
   }
-  .col-lg-8{
+  
+  .col-lg-8 {
       float: right;
       font-family: Cuprum;
       font-size: 40px;

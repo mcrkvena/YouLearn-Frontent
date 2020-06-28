@@ -13,9 +13,12 @@ let Posts = {
         async delete(postId, commentId) {
             await Service.delete(`/forum/${postId}/comments/${commentId}`);
         },
-        },
+    },
     add(post) {
         return Service.post('/forum', post);
+    },
+    async delete(postId) {
+        await Service.delete(`/forum/${postId}`)
     },
     async getOne(id) {
         let response = await Service.get(`/forum/${id}`);
@@ -54,9 +57,12 @@ let Videos = {
         async delete(videoId, commentId) {
             await Service.delete(`/videos/${videoId}/comments/${commentId}`);
         },
-        },
+    },
     add(post) {
         return Service.post('/videos', post);
+    },
+    async delete(post) {
+        await Service.delete(`/videos/${post}`)
     },
     async getOne(id) {
         let response = await Service.get(`/videos/${id}`);

@@ -72,7 +72,7 @@ export default {
         logout() {
             firebase.auth().signOut();
         },
-        mailFormat(str){
+        mailFormat(str) {
           return str.slice(0, str.indexOf("@"));
         }
     },
@@ -84,9 +84,10 @@ export default {
 </script>
 
 <style scoped>
-  #videocontainer{
+  #videocontainer {
     float: left;
   }
+  
   #bigvideo {
     width: 1200px;
     height: 800px;

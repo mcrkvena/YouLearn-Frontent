@@ -46,23 +46,28 @@ export default {
 </script>
 
 <style>
-  #title{
+  #title {
     font-family: Cuprum;
     font-weight: bold;
   }
-  #exampleInputEmail1{
+
+  #exampleInputEmail1 {
     font-family: Cuprum;
   }
-  #exampleInputPassword1{
+
+  #exampleInputPassword1 {
     font-family: Cuprum;
   }
-  #mail{
+
+  #mail {
     font-family: Cuprum;
   }
-  #pw{
+
+  #pw {
     font-family: Cuprum;
   }
-  #submitButton{
+  
+  #submitButton {
     font-family: Cuprum;
     background-color: darkred;
     border: 0px;

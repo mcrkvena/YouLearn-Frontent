@@ -11,7 +11,6 @@
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
                 <span class="navbar-toggler-icon"></span>
               </button>
-
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <form class="form-inline my-2 my-lg-0 ml-5">
                   <input v-model="searchTerm" class="form-control mr-sm-2" type="search" id="searchbar" placeholder="Search..." aria-label="Search" />
@@ -25,7 +24,6 @@
         </div>
       </div>
     </div>
-
     <div class="container">
       <router-view />
     </div>
@@ -41,7 +39,7 @@ export default {
   data() {
     return store;
   },
-  mounted(){
+  mounted() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         console.log("Logged in as " + user.email)
@@ -65,14 +63,12 @@ export default {
 body {
   background-color: rgba(var(--b3f, 250, 250, 250), 1);
 }
-
 .bg-white {
   background-color: white;
   border-bottom: #ccc 1px solid;
   margin-bottom: 20px;
   padding: 2px;
 }
-
 nav.navbar {
   background-color: white;
 
@@ -82,7 +78,6 @@ nav.navbar {
       margin-right: 10px;
       padding-right: 10px;
     }
-
     img {
       position: relative;
       top: 3px;
@@ -90,13 +85,13 @@ nav.navbar {
   }
 }
 
-.btn-primary {
+.btn {
   color: #007bff;
   background: none;
   border-color: #007bff;
 }
 
-#in{
+#in {
   font-family: Cuprum;
   background-color: darkred;
   border: 0px;
@@ -105,7 +100,7 @@ nav.navbar {
   justify-content: center;
 }
 
-#out{
+#out {
   font-family: Cuprum;
   background-color: darkred;
   border: 0px;
@@ -114,7 +109,7 @@ nav.navbar {
   justify-content: center;
 }
 
-#reg{
+#reg {
   font-family: Cuprum;
   background-color: darkred;
   border: 0px;
@@ -123,7 +118,7 @@ nav.navbar {
   justify-content: center;
 }
 
-#searchbar{
+#searchbar {
   font-family: Cuprum;
   width: 400px;
 }

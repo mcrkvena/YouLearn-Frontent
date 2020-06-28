@@ -81,14 +81,14 @@ export default {
   watch: {
     "store.searchTerm": _.debounce(function(val) {this.fetchVideos(val)}, 500)
   },
-  computed:{
-    firstrow(){
+  computed: {
+    firstrow() {
         return this.cards.slice(0,3)
     },
-    secondrow(){
+    secondrow() {
         return this.cards.slice(3,6)
     },
-    thirdrow(){
+    thirdrow() {
         return this.cards.slice(6,9)
     },
   },

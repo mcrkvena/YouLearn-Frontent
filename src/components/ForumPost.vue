@@ -9,7 +9,7 @@
         </div>
         <div class="card-footer text-left" id="postedtime">
           <div style="float: right">{{ timeAgo }}</div>
-
+          <a @click="removePost(info.id)" href="#">Delete</a>
           <div v-if="showcomments">
             <div class="comments list-group">
               <a :key="c.posted_at" v-for="c in info.comments" href="#" class="animate list-group-item list-group-item-action flex-column align-items-start">
@@ -20,7 +20,6 @@
                 <strong>{{ c.comment }}</strong>
               </a>
             </div>
-
             <form @submit.prevent="postComment" class="form-inline mb-5">
               <div class="form-group">
                 <input v-model="newComment" type="text" class="form-control" id="comment" placeholder="Add a comment">
@@ -28,10 +27,8 @@
               <button type="submit" class="btn">Post</button>
             </form>
           </div>
-
         </div>
       </div>
-
 </template>
 
 <script>
@@ -70,7 +67,7 @@ export default {
         }
         this.refresh();
       }
-      },
+    },
     async refresh() {
       let post = await Posts.getOne(this.info.id);
       this.info.comments = post.comments;
@@ -79,10 +76,15 @@ export default {
       let postId = this.info.id;
       await Posts.Comments.delete(postId, commentId);
       this.refresh();
+    },
+    async removePost() {
+      let postId = this.info.id;
+      await Posts.delete(postId);
+      this.$router.push({name: 'posts'}).catch(err => console.log(err))
     }
   },
   computed: {
-    timeAgo () {
+    timeAgo() {
       return moment(this.info.posted_at).fromNow()
     }
   }
@@ -90,7 +92,6 @@ export default {
 </script>
 
 <style>
-
   #allposts{
     width: 1200px;
     margin-left: -300px;

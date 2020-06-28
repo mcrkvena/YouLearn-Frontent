@@ -2,6 +2,7 @@
       <div class="card text-center" id="allvideos">
         <div class="card-header text-left">
             <strong>{{ info.title }} </strong>
+            <a style="float: right" @click="removeVideo(info.id)" href="#">Delete</a>
         </div>
         <div class="card-body" >
             <iframe width="1200" height="800"
@@ -22,7 +23,6 @@
                 <strong>{{ c.comment }}</strong>
               </a>
             </div>
-
             <form @submit.prevent="postComment" class="form-inline mb-5">
               <div class="form-group">
                 <input v-model="newComment" type="text" class="form-control" id="comment" placeholder="Add a comment">
@@ -30,10 +30,8 @@
               <button type="submit" class="btn">Post</button>
             </form>
           </div>
-
         </div>
       </div>
-
 </template>
 
 <script>
@@ -71,8 +69,8 @@ export default {
           this.newComment = '';
         }
         this.refresh();
-        }
-      },
+      }
+    },
     async refresh() {
       let video = await Videos.getOne(this.info.id);
       this.info.comments = video.comments;
@@ -81,10 +79,15 @@ export default {
       let videoId = this.info.id;
       await Videos.Comments.delete(videoId, commentId);
       this.refresh();
+    },
+    async removeVideo() {
+      let videoId = this.info.id;
+      await Videos.delete(videoId);
+      this.$router.push({name: 'videos'}).catch(err => console.log(err))
     }
   },
   computed: {
-    timeAgo () {
+    timeAgo() {
       return moment(this.info.posted_at).fromNow()
     }
   }

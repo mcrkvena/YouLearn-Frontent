@@ -81,14 +81,14 @@ export default {
   watch: {
     "store.searchTerm": _.debounce(function(val) {this.fetchVideos(val)}, 500)
   },
-  computed:{
-    firstrow(){
+  computed: {
+    firstrow() {
         return this.cards.slice(0,3)
     },
-    secondrow(){
+    secondrow() {
         return this.cards.slice(3,6)
     },
-    thirdrow(){
+    thirdrow() {
         return this.cards.slice(6,9)
     },
   },
@@ -115,7 +115,7 @@ export default {
     expandVideo(card) {
             this.$router.push({ path: `videos/${card.id}` });
     },
-    mailFormat(str){
+    mailFormat(str) {
       return str.slice(0, str.indexOf("@"));
     }
   },
@@ -129,11 +129,13 @@ export default {
   .col-lg-4{
     margin-left: -30%;
   }
+
   #loggedintext{
     font-family: Cuprum;
     font-size: 20px;
     color: black;
   }
+
   .btn{
     font-family: Cuprum;
     border: 2px;
@@ -143,14 +145,17 @@ export default {
     font-size: 20px;
     color: black;
   }
+
   .col-lg-4{
       float: left;
   }
+
   .col-lg-8{
       float: right;
       font-family: Cuprum;
       font-size: 40px;
   }
+
   .row1{
     width: 1220px;
     margin-left: -150px;
@@ -158,6 +163,7 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+
   .row2{
     width: 1220px;
     margin-left: -150px;
@@ -165,6 +171,7 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+  
   .row3{
     width: 1220px;
     margin-left: -150px;

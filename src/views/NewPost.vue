@@ -60,11 +60,11 @@ img:hover {
   width: 200px;
 }
 
-#content{
+#content {
   height: 200px;
 }
 
-.btn{
+.btn {
   font-family: Cuprum;
   border: 2px;
   border-color: black;

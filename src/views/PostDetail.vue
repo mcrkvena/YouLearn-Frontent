@@ -72,7 +72,7 @@ export default {
         logout() {
             firebase.auth().signOut();
         },
-        mailFormat(str){
+        mailFormat(str) {
           return str.slice(0, str.indexOf("@"));
         }
     },

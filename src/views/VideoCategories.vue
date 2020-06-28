@@ -91,7 +91,7 @@ export default {
     logout() {
       firebase.auth().signOut();
     },
-    mailFormat(str){
+    mailFormat(str) {
       return str.slice(0, str.indexOf("@"));
     }
   }
@@ -99,12 +99,13 @@ export default {
 </script>
 
 <style>
-  #loggedintext{
+  #loggedintext {
     font-family: Cuprum;
     font-size: 20px;
     color: black;
   }
-  .btn{
+
+  .btn {
     font-family: Cuprum;
     border: 2px;
     border-color: black;
@@ -113,27 +114,32 @@ export default {
     font-size: 20px;
     color: black;
   }
-  #catlist{
+
+  #catlist {
     margin-left: -200px;
     margin-top: 30px;
     font-size: 32px;
   }
-  .allcats1{
+
+  .allcats1 {
     margin-bottom: 20px;
     background-color:lightgrey;
     border-radius: 25px;
     text-align: center;
   }
-  .allcats2{
+
+  .allcats2 {
     margin-bottom: 20px;
     background-color: lightblue;
     border-radius: 25px;
     text-align: center;
   }
-  .col-lg-4{
+
+  .col-lg-4 {
       float: left;
   }
-  .col-lg-8{
+  
+  .col-lg-8 {
       float: right;
       font-family: Cuprum;
       font-size: 40px;

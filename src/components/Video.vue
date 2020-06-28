@@ -11,7 +11,7 @@
         </div>
         <div class="card-footer text-left">
           <div style="float: left">
-              <strong>{{ info.title }} </strong>
+              <strong>{{ info.title }}</strong> 
           </div>
           <div v-if="showcomments">
             <div class="comments list-group">
@@ -23,7 +23,6 @@
                 <small>{{ c.comment }}</small>
               </a>
             </div>
-
             <form @submit.prevent="postComment" class="form-inline mb-5">
               <div class="form-group">
                 <input v-model="newComment" type="text" class="form-control" placeholder="Comment">
@@ -31,10 +30,8 @@
               <button type="submit" class="btn btn-primary ml-2">Post</button>
             </form>
           </div>
-
         </div>
       </div>
-
 </template>
 
 <script>
@@ -72,8 +69,8 @@ export default {
           this.newComment = '';
         }
         this.refresh();
-        }
-      },
+      }
+    },
     async refresh() {
       let video = await Videos.getOne(this.info.videoid);
       this.info.comments = video.comments;
@@ -85,7 +82,7 @@ export default {
     }
   },
   computed: {
-    timeAgo () {
+    timeAgo() {
       return moment(this.info.posted_at).fromNow()
     }
   }
@@ -93,7 +90,6 @@ export default {
 </script>
 
 <style>
-
   #allvideos{
     width: 500px;
     margin-left: -300px;

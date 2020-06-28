@@ -85,7 +85,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .card-body {
   padding: 0px;
 }
@@ -97,7 +96,8 @@ img:hover {
 .btn-post {
   width: 200px;
 }
-.btn{
+
+.btn {
   font-family: Cuprum;
   border: 2px;
   border-color: black;
@@ -106,10 +106,12 @@ img:hover {
   font-size: 20px;
   color: black;
 }
-.labels{
+
+.labels {
     font-family: Cuprum;
     font-size: 24px;
 }
+
 .input-group {
   margin-bottom: 20px;
 }
